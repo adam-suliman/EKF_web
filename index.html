@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <title>Telegram Web App</title>
     <style>
         body {
@@ -32,7 +33,7 @@
             margin-bottom: 25px;
         }
         .table-header {
-            background-color: #95A5A6;
+            background-color: var(--tg-theme-bg-color);
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.03em;
@@ -69,7 +70,7 @@
                 padding: 10px 0;
             }
             .col:before {
-                color: #6C7A89;
+                color: var(--tg-theme-secondary-bg-color);
                 padding-right: 10px;
                 content: attr(data-label);
                 flex-basis: 50%;
