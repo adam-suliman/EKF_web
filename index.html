@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App</title>
+    <style>
+        body {
+            font-family: 'lato', sans-serif;
+        }
+        .container {
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        h2 {
+            font-size: 26px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .responsive-table {
+            list-style-type: none;
+            padding: 0;
+        }
+        .responsive-table li {
+            border-radius: 3px;
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        .table-header {
+            background-color: #95A5A6;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .table-row {
+            background-color: #ffffff;
+            box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+        }
+        .col-1 {
+            flex-basis: 10%;
+        }
+        .col-2 {
+            flex-basis: 40%;
+        }
+        .col-3 {
+            flex-basis: 25%;
+        }
+        .col-4 {
+            flex-basis: 25%;
+        }
+        .col-5 {
+            flex-basis: 25%;
+        }
+        @media all and (max-width: 767px) {
+            .table-header {
+                display: none;
+            }
+            li {
+                display: block;
+            }
+            .col {
+                flex-basis: 100%;
+                display: flex;
+                padding: 10px 0;
+            }
+            .col:before {
+                color: #6C7A89;
+                padding-right: 10px;
+                content: attr(data-label);
+                flex-basis: 50%;
+                text-align: right;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Смета</h2>
+        <ul class="responsive-table" id="data-table">
+            <li class="table-header">
+                <div class="col col-1">Артикул</div>
+                <div class="col col-2">Номенклатура</div>
+                <div class="col col-3">Количество</div>
+                <div class="col col-4">Цена</div>
+                <div class="col col-5">Стоимость</div>
+            </li>
+        </ul>
+        <ul class="responsive-table">
+            <li class="table-row" id="total-row">
+                <div class="col col-1" data-label="Артикул"></div>
+                <div class="col col-2" data-label="Номенклатура"></div>
+                <div class="col col-3" data-label="Количество"></div>
+                <div class="col col-4" data-label="Цена">Итого</div>
+                <div class="col col-5" data-label="Стоимость" id="total-sum"></div>
+            </li>
+        </ul>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const file_id = urlParams.get('file_id');
+
+        if (file_id) {
+            fetch(`http://localhost:8000/get_data/${file_id}`)
+                .then(response => response.json())
+                .then(data => {
+                    const table = document.getElementById('data-table');
+                    let totalSum = 0;
+                    data.forEach(row => {
+                        const tableRow = document.createElement('li');
+                        tableRow.className = 'table-row';
+
+                        const col1 = document.createElement('div');
+                        col1.className = 'col col-1';
+                        col1.setAttribute('data-label', 'Артикул');
+                        col1.textContent = row.id;
+
+                        const col2 = document.createElement('div');
+                        col2.className = 'col col-2';
+                        col2.setAttribute('data-label', 'Номенклатура');
+                        col2.textContent = row.name;
+
+                        const col3 = document.createElement('div');
+                        col3.className = 'col col-3';
+                        col3.setAttribute('data-label', 'Количество');
+                        col3.textContent = row.amount;
+
+                        const col4 = document.createElement('div');
+                        col4.className = 'col col-4';
+                        col4.setAttribute('data-label', 'Цена');
+                        col4.textContent = row.price;
+
+                        const col5 = document.createElement('div');
+                        col5.className = 'col col-5';
+                        col5.setAttribute('data-label', 'Стоимость');
+                        col5.textContent = row.sum;
+
+                        tableRow.appendChild(col1);
+                        tableRow.appendChild(col2);
+                        tableRow.appendChild(col3);
+                        tableRow.appendChild(col4);
+                        tableRow.appendChild(col5);
+
+                        table.appendChild(tableRow);
+
+                        totalSum += row.sum;
+                    });
+
+                    document.getElementById('total-sum').textContent = totalSum;
+                })
+                .catch(error => console.error('Error:', error));
+        } else {
+            console.error('File ID not found in URL');
+        }
+    </script>
+</body>
+</html>
