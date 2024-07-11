@@ -120,7 +120,7 @@
         const file_id = urlParams.get('file_id');
 
         if (file_id) {
-            fetch(`http://127.0.0.1:8000/get_data/${file_id}`)
+            fetch(`http://web:8000/get_data/${file_id}`)
                 .then(response => response.json())
                 .then(data => {
                     const table = document.getElementById('data-table');
