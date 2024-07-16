@@ -120,7 +120,7 @@
         const file_id = urlParams.get('file_id');
         const user_id = urlParams.get('user_id');
 
-        if (file_id & user_id) {
+        if (file_id) {
             fetch(`http://127.0.0.1:8000/get_data/${user_id}/${file_id}`)
                 .then(response => response.json())
                 .then(data => {
