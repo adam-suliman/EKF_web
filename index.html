@@ -125,7 +125,7 @@
         const user_id = urlParams.get('user_id');
 
         if (file_id) {
-            fetch(`https://d06228ed-4aa9-4911-90ed-b69a51ef2208.tunnel4.com/get_data/${user_id}/${file_id}`)
+            fetch(`https://a110-79-173-127-34.ngrok-free.app/get_data/${user_id}/${file_id}`)
                 .then(response => response.json())
                 .then(data => {
                     const table = document.getElementById('data-table');
