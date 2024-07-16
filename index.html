@@ -131,7 +131,7 @@
                   Accept: 'application/json',
                   'Content-Type': 'application/json',
                 }})
-                .then(response => response.json())
+                .then(response => console.log(response))
                 .then(data => {
                     const table = document.getElementById('data-table');
                     let totalSum = 0;
