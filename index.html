@@ -120,7 +120,6 @@
         headers.append('Content-Type', 'application/json');
         headers.append('Accept', 'application/json');
 
-
         const urlParams = new URLSearchParams(window.location.search);
         const file_id = urlParams.get('file_id');
         const user_id = urlParams.get('user_id');
@@ -129,7 +128,8 @@
             fetch(`https://d06228ed-4aa9-4911-90ed-b69a51ef2208.tunnel4.com/get_data/${user_id}/${file_id}`, {
                 credentials: 'include',
                 method: 'GET',
-                headers: headers
+                headers: headers,
+                mode:"no-cors"
               })
                 .then(response => response.json())
                 .then(data => {
