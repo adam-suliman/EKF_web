@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
         body {
             font-family: 'lato', sans-serif;
         }
+
         .container {
             max-width: 1000px;
             margin-left: auto;
@@ -16,16 +18,19 @@
             padding-left: 10px;
             padding-right: 10px;
         }
+
         h2 {
             font-size: 22px;
             color: var(--tg-theme-text-color);
             margin: 20px 0;
             text-align: center;
         }
+
         .responsive-table {
             list-style-type: none;
             padding: 0;
         }
+
         .responsive-table li {
             border-radius: 3px;
             padding: 25px 30px;
@@ -33,6 +38,7 @@
             justify-content: space-between;
             margin-bottom: 25px;
         }
+
         .table-header {
             background-color: var(--tg-theme-header-bg-color);
             font-size: 9px;
@@ -40,49 +46,61 @@
             text-transform: uppercase;
             letter-spacing: 0.03em;
         }
+
         .table-row {
             background-color: var(--tg-theme-section-bg-color);
-            box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+            box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
             font-size: 8px;
             color: var(--tg-theme-text-color);
         }
+
         div#total-sum {
             background-color: var(--tg-theme-section-bg-color);
-            box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+            box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
             font-size: 8px;
             color: var(--tg-theme-destructive-text-color);
         }
-        label{
+
+        label {
             font-size: 8px;
-            color:red;
+            color: red;
         }
+
         .col-1 {
             flex-basis: 10%;
         }
+
         .col-2 {
             flex-basis: 40%;
         }
+
         .col-3 {
             flex-basis: 25%;
         }
+
         .col-4 {
             flex-basis: 25%;
         }
+
         .col-5 {
             flex-basis: 25%;
         }
+
         @media all and (max-width: 767px) {
             .table-header {
                 display: none;
             }
+
             li {
                 display: block;
             }
+
             .col {
                 flex-basis: 100%;
                 display: flex;
                 padding: 10px 0;
             }
+
             .col:before {
                 color: var(--tg-theme-destructive-text-color);
                 padding-right: 10px;
@@ -93,6 +111,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Смета</h2>
@@ -125,11 +144,12 @@
         const user_id = urlParams.get('user_id');
 
         if (file_id) {
-            fetch(`https://903f-79-173-127-34.ngrok-free.app/get_data/${user_id}/${file_id}`, {
+            fetch(`https://bc8e-5-128-112-20.ngrok-free.app/get_data/${user_id}/${file_id}`, {
                 method: "get",
                 headers: new Headers({
-                  "ngrok-skip-browser-warning": "696",
-                })})
+                    "ngrok-skip-browser-warning": "696",
+                })
+            })
                 .then(response => response.json())
                 .then(data => {
                     const table = document.getElementById('data-table');
@@ -182,4 +202,5 @@
         }
     </script>
 </body>
+
 </html>
