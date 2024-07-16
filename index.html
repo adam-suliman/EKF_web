@@ -117,21 +117,16 @@
     </div>
     <script>
         let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');
 
-  headers.append('Content-Type', 'application/json');
-  headers.append('Accept', 'application/json');
 
-  headers.append('Access-Control-Allow-Origin', 'https://d06228ed-4aa9-4911-90ed-b69a51ef2208.tunnel4.com');
-  headers.append('Access-Control-Allow-Credentials', 'true');
-
-  headers.append('GET', 'POST', 'OPTIONS');
         const urlParams = new URLSearchParams(window.location.search);
         const file_id = urlParams.get('file_id');
         const user_id = urlParams.get('user_id');
 
         if (file_id) {
             fetch(`https://d06228ed-4aa9-4911-90ed-b69a51ef2208.tunnel4.com/get_data/${user_id}/${file_id}`, {
-                //mode: 'no-cors',
                 credentials: 'include',
                 method: 'GET',
                 headers: headers
