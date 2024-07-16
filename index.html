@@ -125,7 +125,12 @@
         const user_id = urlParams.get('user_id');
 
         if (file_id) {
-            fetch(`https://a110-79-173-127-34.ngrok-free.app/get_data/${user_id}/${file_id}`)
+            fetch(`https://a110-79-173-127-34.ngrok-free.app/get_data/${user_id}/${file_id}`, {
+                method: 'GET',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                }})
                 .then(response => response.json())
                 .then(data => {
                     const table = document.getElementById('data-table');
