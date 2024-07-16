@@ -126,12 +126,10 @@
 
         if (file_id) {
             fetch(`https://e63e-79-173-127-34.ngrok-free.app/get_data/${user_id}/${file_id}`, {
-                method: 'GET',
-                headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                  'ngrok-skip-browser-warning': 'true'
-                }})
+                method: "get",
+                headers: new Headers({
+                  "ngrok-skip-browser-warning": "69420",
+                })})
                 .then(response => console.log(response))
                 .then(data => {
                     const table = document.getElementById('data-table');
